@@ -1,7 +1,14 @@
 import React from 'react';
-import { makeStyles, Drawer, Divider, ListItemIcon } from '@material-ui/core';
+import {
+  makeStyles,
+  Drawer,
+  Divider,
+  IconButton,
+  useTheme,
+} from '@material-ui/core';
 import ListaMenu from '../ListasMenu/ListaMenu';
-import CloseIcon from '@material-ui/icons/Close';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 const Cajon = (props) => {
   const drawerWidth = 240;
@@ -18,10 +25,17 @@ const Cajon = (props) => {
     encabezado: {
       marginLeft: 'auto',
     },
+    drawerHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+      justifyContent: 'flex-end',
+    },
   }));
   const clase = estilos();
-
-  // const { handleCloseDrawer } = this.props;
+  const theme = useTheme();
 
   const handleCloseDrawer = () => {
     console.log('hicimos click ');
@@ -38,12 +52,18 @@ const Cajon = (props) => {
       anchor="left"
       open={props.open}
     >
-      <div className={clase.toolbar}></div>
-      <div className={clase.encabezado}>
-        <ListItemIcon onClick={handleCloseDrawer}>
-          <CloseIcon />
-        </ListItemIcon>
+      <div className={clase.toolbar}>
+        <div className={clase.drawerHeader}>
+          <IconButton onClick={handleCloseDrawer}>
+            {theme.direction === 'ltr' ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </IconButton>
+        </div>
       </div>
+
       <Divider />
       <ListaMenu />
     </Drawer>

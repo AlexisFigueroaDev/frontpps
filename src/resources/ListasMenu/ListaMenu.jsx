@@ -7,14 +7,15 @@ import {
   ListItemText,
   makeStyles,
 } from '@material-ui/core';
-import PostAddIcon from '@material-ui/icons/PostAdd';
-import PeopleIcon from '@material-ui/icons/People';
+
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
+import GroupIcon from '@material-ui/icons/Group';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import FolderSharedIcon from '@material-ui/icons/FolderShared';
 import React, { useState } from 'react';
-import Menu from './../../data/Menu';
 
 const ListaMenu = () => {
   const estilos = makeStyles((theme) => ({
@@ -30,9 +31,14 @@ const ListaMenu = () => {
 
   const clase = estilos();
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
 
   const abrirClick = () => {
     setOpen(!open);
+  };
+
+  const abrirClick2 = () => {
+    setOpen2(!open2);
   };
 
   return (
@@ -40,23 +46,77 @@ const ListaMenu = () => {
       <List component="nav" className={clase.main}>
         <ListItem button>
           <ListItemIcon>
-            <PostAddIcon />
+            <GroupIcon />
           </ListItemIcon>
-          <ListItemText primary={Menu.menuLocker.participantes.nombre} />
+          <ListItemText primary="Usuarios" />
         </ListItem>
-        <Divider />
-        <ListItem button>
+
+        <ListItem button onClick={abrirClick2}>
           <ListItemIcon>
-            <PeopleIcon />
+            <FolderSharedIcon />
           </ListItemIcon>
-          <ListItemText primary={Menu.menuLocker.torneos.nombre} />
+          <ListItemText primary="Registros" />
+          {open2 ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
-        <Divider />
+
+        <Collapse in={open2} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem button className={clase.mainAux}>
+              <ListItemIcon>
+                <FiberManualRecordIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Categoria" />
+            </ListItem>
+            <Divider />
+            <ListItem button className={clase.mainAux}>
+              <ListItemIcon>
+                <FiberManualRecordIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Especialidades" />
+            </ListItem>
+            <Divider />
+            <ListItem button className={clase.mainAux}>
+              <ListItemIcon>
+                <FiberManualRecordIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Division" />
+            </ListItem>
+            <Divider />
+            <ListItem button className={clase.mainAux}>
+              <ListItemIcon>
+                <FiberManualRecordIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Participantes" />
+            </ListItem>
+            <Divider />
+            <ListItem button className={clase.mainAux}>
+              <ListItemIcon>
+                <FiberManualRecordIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Profesionales" />
+            </ListItem>
+            <Divider />
+            <ListItem button className={clase.mainAux}>
+              <ListItemIcon>
+                <FiberManualRecordIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Torneo" />
+            </ListItem>
+            <Divider />
+            <ListItem button className={clase.mainAux}>
+              <ListItemIcon>
+                <FiberManualRecordIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Planificacion" />
+            </ListItem>
+          </List>
+        </Collapse>
+
         <ListItem button onClick={abrirClick}>
           <ListItemIcon>
             <AllInboxIcon />
           </ListItemIcon>
-          <ListItemText primary={Menu.menuLocker.Reportes.nombre} />
+          <ListItemText primary="Reportes" />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
 
@@ -64,19 +124,27 @@ const ListaMenu = () => {
           <List component="div" disablePadding>
             <ListItem button className={clase.mainAux}>
               <ListItemIcon>
-                <AddIcon />
+                <AddIcon color="primary" />
               </ListItemIcon>
-              <ListItemText
-                primary={Menu.menuLocker.Reportes.submenu.reporte1.nombre}
-              />
+              <ListItemText primary="Reporte 1" />
             </ListItem>
             <ListItem button className={clase.mainAux}>
               <ListItemIcon>
-                <AddIcon />
+                <AddIcon color="primary" />
               </ListItemIcon>
-              <ListItemText
-                primary={Menu.menuLocker.Reportes.submenu.reporte2.nombre}
-              />
+              <ListItemText primary="Reporte 2" />
+            </ListItem>
+            <ListItem button className={clase.mainAux}>
+              <ListItemIcon>
+                <AddIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Reporte 3" />
+            </ListItem>
+            <ListItem button className={clase.mainAux}>
+              <ListItemIcon>
+                <AddIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Reporte 4" />
             </ListItem>
           </List>
         </Collapse>
