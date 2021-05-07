@@ -1,7 +1,7 @@
 const datos = {
   usuarios: {
-    nombre: 'Lisbeth',
-    apellido: 'Figueroa',
+    nombre: 'Jimena',
+    apellido: 'Martinez',
   },
 };
 
